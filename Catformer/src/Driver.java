@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class Driver extends JPanel implements ActionListener, KeyListener{
 	
 	public static Player chocola;
-	
+	Audio bgMusic = new Audio("/audio/titleScreenMusic.wav", true);
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		chocola.paint(g);
@@ -30,6 +30,7 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	}
 	public static void main(String[] args){
 	  	Driver d = new Driver();
+	  	
 	}
 	
 	public Driver() {
@@ -38,11 +39,8 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		f.setSize(800,600);
 		f.setResizable(false);
 		f.addKeyListener(this);
-		
-		
-		
+		bgMusic.play();
 		chocola = new Player("/imgs/chocola.png");
-	  	
 	  	f.add(this);
 	  	Timer t = new Timer(16, this);
 	  	t.start();
@@ -59,17 +57,28 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == 68) {
+		int keyCode = e.getKeyCode();
+		switch(keyCode) {
+		case 68: 
 			chocola.setVx(2);
+			break;
+		case 65:
+			chocola.setVx(-2);
+			break;
+		
 		}
+		
 		
 	}
 	@Override
 	 public void keyReleased(KeyEvent e) {
         // Get the released key code
         int keyCode = e.getKeyCode();
-        if (keyCode == 68) {
-            chocola.setVx(0);
+        switch(keyCode) {
+        case 68:
+        	chocola.setVx(0);
+        case 65:
+        	chocola.setVx(0);
         }
     }
   
