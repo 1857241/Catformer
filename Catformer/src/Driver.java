@@ -19,28 +19,39 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		super.paintComponent(g);
 		chocola.paint(g);
 	}
-	public static void main(String[] args){
-		chocola = new Player();
-	  	new Driver();
-	}
-	
-	public Driver() {
-		JFrame frame = new JFrame("Nekopara");
-		frame.setSize(800,600);
-		frame.add(this);
-		frame.addKeyListener(this);
-	  	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	  	frame.setTitle("Catformer");
-	  	Timer t = new Timer(16, this);
-	  	t.start();
-	  	frame.setVisible(true);
-	  	
+	public void update() {
+		chocola.move();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		update();
 		repaint();
 		
 	}
+	public static void main(String[] args){
+	  	Driver d = new Driver();
+	}
+	
+	public Driver() {
+		JFrame f = new JFrame();
+		f.setTitle("Catformer");
+		f.setSize(800,600);
+		f.setResizable(false);
+		f.addKeyListener(this);
+		
+		
+		
+		chocola = new Player("/imgs/chocola.png");
+	  	
+	  	f.add(this);
+	  	Timer t = new Timer(16, this);
+	  	t.start();
+	  	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  	f.setVisible(true);
+	  	
+	  	
+	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -48,13 +59,18 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getKeyCode() == 68) {
+			chocola.setVx(2);
+		}
 		
 	}
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	 public void keyReleased(KeyEvent e) {
+        // Get the released key code
+        int keyCode = e.getKeyCode();
+        if (keyCode == 68) {
+            chocola.setVx(0);
+        }
+    }
   
 }
