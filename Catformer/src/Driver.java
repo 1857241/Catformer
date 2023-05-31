@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class Driver extends JPanel implements ActionListener, KeyListener{
 	
 	public static Player chocola;
-	Audio bgMusic = new Audio("/audio/titleScreenMusic.wav", true);
+	Audio bgMusic = new Audio("titleScreenMusic.wav", true);
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		chocola.paint(g);

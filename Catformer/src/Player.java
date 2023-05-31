@@ -11,6 +11,7 @@ public class Player implements KeyListener {
 	private int x, y;
 	private int vx, vy;
 	private int width, height;
+	private boolean jumping;
 	private Image Sprite;
 	private AffineTransform tx;
 	public Player(String fileName) {
