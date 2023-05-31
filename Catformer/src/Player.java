@@ -16,20 +16,23 @@ public class Player implements KeyListener {
 	private AffineTransform tx;
 	public Player(String fileName) {
 		x = 0;
-		y = 500;
+		y = 500-64;
 		vx = 0;
 		vy = 0;
 		width = 64;
 		height = 64;
+		jumping = false;
 		Sprite = getImage(fileName);
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y);
 	}
 	public void move() {
-		y += vy;
 		x += vx;
+		y += vy;
 		tx.setToTranslation(x, y);
 	}
+	
+
 	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -52,21 +55,17 @@ public class Player implements KeyListener {
 		return tempImage;
 	}
 	@Override
-	public void keyTyped(KeyEvent e) {
-		
+	public void keyTyped(KeyEvent e) {	
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
-
-        
-		
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	public int getX() {
 		return x;
 	}
@@ -105,6 +104,12 @@ public class Player implements KeyListener {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	public boolean isJumping() {
+		return jumping;
+	}
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
 	}
 
 }

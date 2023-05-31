@@ -65,7 +65,31 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		case 65:
 			chocola.setVx(-2);
 			break;
-		
+		case 87:
+			chocola.setVy(-2);
+			int pos = chocola.getY();
+			System.out.print(chocola.isJumping());
+			if(chocola.isJumping() == false) {
+				//chocola.setJumping(true);
+				System.out.print("YEAH THIS IS IN FACT RUNNING");
+				chocola.setVy(-2);
+				try {
+					Thread.sleep(2000); 
+				} 
+				catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				chocola.setVy(2);
+				boolean inAir = true;
+				while(inAir == true) {
+					if(chocola.getY() == pos) {
+						chocola.setVy(0);
+						inAir = false;
+					}
+				}
+				chocola.setJumping(false);
+			}
+			break;
 		}
 		
 		
@@ -77,9 +101,15 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
         switch(keyCode) {
         case 68:
         	chocola.setVx(0);
+        	break;
         case 65:
         	chocola.setVx(0);
+        	break;
+        case 90:
+        	System.out.println(chocola.getX() + ", " + chocola.getY());
+        	break;
         }
+        
     }
   
 }
