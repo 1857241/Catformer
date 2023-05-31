@@ -14,7 +14,8 @@ import javax.swing.Timer;
 public class Driver extends JPanel implements ActionListener, KeyListener{
 	
 	public static Player chocola;
-	Audio bgMusic = new Audio("titleScreenMusic.wav", true);
+	Audio bgMusic = new Audio("overworldMusic.wav", true);
+	Audio superSeventeen = new Audio("superSeventeen.wav", true);
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		chocola.paint(g);
@@ -39,7 +40,15 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		f.setSize(800,600);
 		f.setResizable(false);
 		f.addKeyListener(this);
-		bgMusic.play();
+		int i = (int) (Math.random() * 50);
+		System.out.print(i);
+		if(i == 0) {
+			System.out.print(i);
+			superSeventeen.play();
+		}
+		else {
+			bgMusic.play();
+		}
 		chocola = new Player("/imgs/chocola.png");
 	  	f.add(this);
 	  	Timer t = new Timer(16, this);
