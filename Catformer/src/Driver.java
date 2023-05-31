@@ -45,8 +45,7 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	  	t.start();
 	  	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  	f.setVisible(true);
-	  	
-	  	
+	  		
 	}
 	
 	@Override
@@ -65,31 +64,31 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		case 65:
 			chocola.setVx(-2);
 			break;
-		case 87:
-			chocola.setVy(-2);
-			int pos = chocola.getY();
-			System.out.print(chocola.isJumping());
-			if(chocola.isJumping() == false) {
-				//chocola.setJumping(true);
-				System.out.print("YEAH THIS IS IN FACT RUNNING");
-				chocola.setVy(-2);
-				try {
-					Thread.sleep(2000); 
-				} 
-				catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				chocola.setVy(2);
-				boolean inAir = true;
-				while(inAir == true) {
-					if(chocola.getY() == pos) {
-						chocola.setVy(0);
-						inAir = false;
-					}
-				}
-				chocola.setJumping(false);
-			}
-			break;
+//		case 87:
+//			chocola.setVy(-2);
+//			int pos = chocola.getY();
+//			System.out.print(chocola.isJumping());
+//			if(chocola.isJumping() == false) {
+//				//chocola.setJumping(true);
+//				System.out.print("YEAH THIS IS IN FACT RUNNING");
+//				chocola.setVy(-2);
+//				try {
+//					Thread.sleep(2000); 
+//				} 
+//				catch (InterruptedException e1) {
+//					e1.printStackTrace();
+//				}
+//				chocola.setVy(2);
+//				boolean inAir = true;
+//				while(inAir == true) {
+//					if(chocola.getY() == pos) {
+//						chocola.setVy(0);
+//						inAir = false;
+//					}
+//				}
+//				chocola.setJumping(false);
+//			}
+//			break;
 		}
 		
 		
