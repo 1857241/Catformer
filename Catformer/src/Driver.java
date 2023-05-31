@@ -52,7 +52,6 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
