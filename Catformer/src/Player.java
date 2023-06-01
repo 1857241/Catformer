@@ -16,7 +16,7 @@ public class Player implements KeyListener {
 	private AffineTransform tx;
 	public Player(String fileName) {
 		x = 0;
-		y = 500-64;
+		y = 500;
 		vx = 0;
 		vy = 0;
 		width = 64;
@@ -30,6 +30,7 @@ public class Player implements KeyListener {
 		x += vx;
 		y += vy;
 		tx.setToTranslation(x, y);
+		tx.scale(2, 2);
 	}
 	
 
@@ -38,6 +39,8 @@ public class Player implements KeyListener {
 		Graphics2D g2 = (Graphics2D) g;
 		move();
 		g2.drawImage(Sprite, tx, null);
+		//shows hitbox as visible
+		//g2.drawRect(x, y, width, height);
 	} 
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);

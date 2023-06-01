@@ -8,17 +8,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
 public class Driver extends JPanel implements ActionListener, KeyListener{
 	
 	public static Player chocola;
-	Audio bgMusic = new Audio("overworldMusic.wav", true);
-	Audio superSeventeen = new Audio("superSeventeen.wav", true);
+	public static Background kitchen1;
+	public static ArrayList<Mouse> mice = new ArrayList<>();
+	public static Mouse m1;
+	Audio bgMusic = new Audio("catwork.wav", true);
+	Audio secretBgMusic = new Audio("seventeen.wav", true);
+	String lives = "Lives: 3";
+	Font comicSans = new Font("Comic Sans MS", 1, 50);
+	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		kitchen1.paint(g);
+		g.setFont(comicSans);
+		g.setColor(Color.black);
+		g.drawString(lives, 10, 50);
 		chocola.paint(g);
+		m1.paint(g);
+		
 	}
 	public void update() {
 		chocola.move();
@@ -36,19 +49,29 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	public Driver() {
 		JFrame f = new JFrame();
 		f.setTitle("Catformer");
-		f.setSize(800,600);
+		f.setSize(800, 600);
 		f.setResizable(false);
 		f.addKeyListener(this);
 		int i = (int) (Math.random() * 50);
-		System.out.print(i);
+		/*
+		 * testing if randomizer works
+		while(i != 0) {
+			System.out.println(i);
+			i = (int) (Math.random() * 50);
+		}
+		*/
+		
 		if(i == 0) {
-			System.out.print(i);
-			superSeventeen.play();
+			System.out.print(i + ", Super is playing!");
+			secretBgMusic.play();
 		}
 		else {
+			System.out.print(i + ", Catwork is playing!");
 			bgMusic.play();
 		}
 		chocola = new Player("/imgs/chocola.png");
+		kitchen1 = new Background("/imgs/kitchen.png");
+		m1 = new Mouse(300, 300, "/imgs/mouse.png");
 	  	f.add(this);
 	  	Timer t = new Timer(16, this);
 	  	t.start();
@@ -57,11 +80,7 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	  		
 	}
 	
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -92,8 +111,12 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
         case 90:
         	System.out.println(chocola.getX() + ", " + chocola.getY());
         	break;
-        }
-        
+        }   
     }
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
   
 }
