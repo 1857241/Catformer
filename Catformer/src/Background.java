@@ -27,7 +27,7 @@ public class Background {
 
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(2, 1.9);
+		tx.scale(2, 1.85);
 	}
 
 	private Image getImage(String path) {

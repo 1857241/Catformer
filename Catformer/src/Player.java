@@ -16,7 +16,7 @@ public class Player implements KeyListener {
 	private AffineTransform tx;
 	public Player(String fileName) {
 		x = 0;
-		y = 500;
+		y = 462;
 		vx = 0;
 		vy = 0;
 		width = 64;
@@ -25,6 +25,19 @@ public class Player implements KeyListener {
 		Sprite = getImage(fileName);
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y);
+	}
+	public void checkGroundCollision() {
+		if(y+height >= 526) {
+			vy = 0;
+			System.out.println("collision detected");
+		}
+	}
+	public void die() {
+		x = 0;
+		y = 462;
+	}
+	public void changeAnimation(String fileName) {
+		Sprite = getImage(fileName);
 	}
 	public void move() {
 		x += vx;
@@ -40,7 +53,7 @@ public class Player implements KeyListener {
 		move();
 		g2.drawImage(Sprite, tx, null);
 		//shows hitbox as visible
-		//g2.drawRect(x, y, width, height);
+		g2.drawRect(x, y, width, height);
 	} 
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);

@@ -5,7 +5,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Mouse {
+public class Object {
 
 	private int x;
 	private int y; 
@@ -14,11 +14,11 @@ public class Mouse {
 	private Image img;
 	private AffineTransform tx; 
 	
-	public Mouse(int x, int y, String fileName) {
+	public Object(int x, int y, int width, int height, String fileName) {
 		this.x = x;
 		this.y = y;
-		width = 32*2;
-		height = 32*2;
+		this.width = width;
+		this.height = height;
 		tx = AffineTransform.getTranslateInstance(x, y);
 		img = getImage(fileName);
 		init(x, y);
@@ -27,12 +27,12 @@ public class Mouse {
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
-		g2.drawRect(x, y, 32*2, 32*2);
+		//g2.drawRect(x, y, 32*5, 32*5);
 	}
 
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(2, 2);
+		tx.scale(3, 3);
 	}
 
 

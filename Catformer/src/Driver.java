@@ -40,6 +40,8 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	public void actionPerformed(ActionEvent e) {
 		update();
 		repaint();
+		chocola.checkGroundCollision();
+		//System.out.println("Frame updated");
 		
 	}
 	public static void main(String[] args){
@@ -69,9 +71,9 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 			System.out.print(i + ", Catwork is playing!");
 			bgMusic.play();
 		}
-		chocola = new Player("/imgs/chocola.png");
-		kitchen1 = new Background("/imgs/kitchen.png");
-		m1 = new Mouse(300, 300, "/imgs/mouse.png");
+		chocola = new Player("/imgs/chocolaUpdated.png");
+		kitchen1 = new Background("/imgs/kitchen1.png");
+		m1 = new Mouse(300, 462, "/imgs/mouseUpdated.gif");
 	  	f.add(this);
 	  	Timer t = new Timer(16, this);
 	  	t.start();
@@ -86,13 +88,18 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		switch(keyCode) {
-		case 68: 
-			chocola.setVx(2);
+		case 68:
+			chocola.changeAnimation("/imgs/chocolaWalking2.gif");
+			chocola.setVx(3);
 			break;
 		case 65:
-			chocola.setVx(-2);
+			chocola.changeAnimation("/imgs/chocolaWalking2.gif");
+			chocola.setVx(-3);
 			break;
-		
+		case 32:
+			chocola.setY(chocola.getY()-200);
+			chocola.setVy(2);
+			break;
 		}
 		
 		
@@ -103,9 +110,11 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
         int keyCode = e.getKeyCode();
         switch(keyCode) {
         case 68:
+        	chocola.changeAnimation("/imgs/chocolaUpdated.png");
         	chocola.setVx(0);
         	break;
         case 65:
+        	chocola.changeAnimation("/imgs/chocolaUpdated.png");
         	chocola.setVx(0);
         	break;
         case 90:
