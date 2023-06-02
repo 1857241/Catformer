@@ -64,11 +64,11 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		*/
 		
 		if(i == 0) {
-			System.out.print(i + ", Super is playing!");
+			System.out.println(i + ", Super is playing!");
 			secretBgMusic.play();
 		}
 		else {
-			System.out.print(i + ", Catwork is playing!");
+			System.out.println(i + ", Catwork is playing!");
 			bgMusic.play();
 		}
 		chocola = new Player("/imgs/chocolaUpdated.png");
@@ -97,8 +97,13 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 			chocola.setVx(-3);
 			break;
 		case 32:
-			chocola.setY(chocola.getY()-200);
-			chocola.setVy(2);
+			//chocola.setY(chocola.getY()-200);
+			if(chocola.isJumping() == false) {
+				chocola.setJumping(true);
+				chocola.setVy(5);
+			}
+			
+			
 			break;
 		}
 		

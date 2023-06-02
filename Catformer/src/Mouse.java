@@ -27,7 +27,7 @@ public class Mouse {
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
-		g2.drawRect(x, y, 32*2, 32*2);
+		//g2.drawRect(x, y+32, 32*2, 32);
 	}
 
 	private void init(double a, double b) {

@@ -9,7 +9,8 @@ import java.net.URL;
 
 public class Player implements KeyListener {
 	private int x, y;
-	private int vx, vy;
+	private double vx, vy;
+	private double a;
 	private int width, height;
 	private boolean jumping;
 	private Image Sprite;
@@ -19,6 +20,7 @@ public class Player implements KeyListener {
 		y = 462;
 		vx = 0;
 		vy = 0;
+		a = -0.15;
 		width = 64;
 		height = 64;
 		jumping = false;
@@ -30,6 +32,8 @@ public class Player implements KeyListener {
 		if(y+height >= 526) {
 			vy = 0;
 			System.out.println("collision detected");
+			y = 462;
+			jumping = false;
 		}
 	}
 	public void die() {
@@ -41,7 +45,8 @@ public class Player implements KeyListener {
 	}
 	public void move() {
 		x += vx;
-		y += vy;
+		y -= vy;
+		vy += a;
 		tx.setToTranslation(x, y);
 		tx.scale(2, 2);
 	}
@@ -53,7 +58,7 @@ public class Player implements KeyListener {
 		move();
 		g2.drawImage(Sprite, tx, null);
 		//shows hitbox as visible
-		g2.drawRect(x, y, width, height);
+		//g2.drawRect(x, y, width, height);
 	} 
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
@@ -94,13 +99,13 @@ public class Player implements KeyListener {
 	public void setY(int y) {
 		this.y = y;
 	}
-	public int getVx() {
+	public double getVx() {
 		return vx;
 	}
 	public void setVx(int vx) {
 		this.vx = vx;
 	}
-	public int getVy() {
+	public double getVy() {
 		return vy;
 	}
 	public void setVy(int vy) {
