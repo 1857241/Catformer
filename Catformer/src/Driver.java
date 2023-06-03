@@ -16,13 +16,14 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	
 	public static Player chocola;
 	public static Background kitchen1;
+	public static Background kitchen2;
 	public static ArrayList<Mouse> mice = new ArrayList<>();
 	public static Mouse m1;
 	Audio bgMusic = new Audio("catwork.wav", true);
 	Audio secretBgMusic = new Audio("seventeen.wav", true);
 	String lives = "Lives: 3";
 	Font comicSans = new Font("Comic Sans MS", 1, 50);
-	
+	boolean levelCleared = false;
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		kitchen1.paint(g);
@@ -31,6 +32,12 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		g.drawString(lives, 10, 50);
 		chocola.paint(g);
 		m1.paint(g);
+		if(levelCleared == true) {
+			kitchen2.paint(g);
+			g.drawString(lives, 10, 50);
+			chocola.paint(g);
+			chocola.setX(0);
+		}
 		
 	}
 	public void update() {
@@ -41,6 +48,7 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		update();
 		repaint();
 		chocola.checkGroundCollision();
+		checkNewLevel();
 		//System.out.println("Frame updated");
 		
 	}
@@ -73,6 +81,7 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 		}
 		chocola = new Player("/imgs/chocolaUpdated.png");
 		kitchen1 = new Background("/imgs/kitchen1.png");
+		kitchen2 = new Background("/imgs/kitchen2.png");
 		m1 = new Mouse(300, 462, "/imgs/mouseUpdated.gif");
 	  	f.add(this);
 	  	Timer t = new Timer(16, this);
@@ -81,7 +90,13 @@ public class Driver extends JPanel implements ActionListener, KeyListener{
 	  	f.setVisible(true);
 	  		
 	}
-	
+	public void checkNewLevel() {
+		if(chocola.getX()+chocola.getWidth() >= 700) {
+			System.out.println("Detected");
+			levelCleared = true;
+		}
+		
+	}
 	
 	
 	@Override

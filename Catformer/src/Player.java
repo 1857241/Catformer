@@ -31,11 +31,12 @@ public class Player implements KeyListener {
 	public void checkGroundCollision() {
 		if(y+height >= 526) {
 			vy = 0;
-			System.out.println("collision detected");
+			//System.out.println("collision detected");
 			y = 462;
 			jumping = false;
 		}
 	}
+	
 	public void die() {
 		x = 0;
 		y = 462;
